@@ -2,6 +2,9 @@ pipeline
 {
     agent any
    
+    tools{
+        maven 'maven-3.9.0'
+    }
 
     environment
     {
@@ -29,7 +32,7 @@ pipeline
         {
             steps
             {
-                sh 'sudo docker build -t ch3tan525/maven-web-application:${buildNumber} .'
+                sh 'docker build -t ch3tan525/maven-web-application:${buildNumber} .'
             }
         }
     stage('push docker image')
@@ -38,9 +41,9 @@ pipeline
             {
                 withCredentials([string(credentialsId: 'docker_hub_pass', variable: 'docker_pass')])
                  {
-                    sh 'sudo docker login -u ch3tan525 -p ${docker_pass}'
+                    sh 'docker login -u ch3tan525 -p ${docker_pass}'
                 }
-                    sh 'sudo docker push ch3tan525/maven-web-application:${buildNumber}'
+                    sh  'docker push ch3tan525/maven-web-application:${buildNumber}'
 
     stage( 'remove docker image')
         {
