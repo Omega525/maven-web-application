@@ -8,7 +8,7 @@ pipeline
         {
             steps
             {
-                git branch: 'chetan', url: 'https://github.com/Omega525/maven-web-application.git'
+                git branch: 'main', url: 'https://github.com/Omega525/maven-web-application.git'
             }
         }
 
