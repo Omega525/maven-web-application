@@ -50,5 +50,16 @@ pipeline
 
             }
         }
+
+    stage('Deploy application to deployment server')
+        {
+            steps()
+            {
+               sshagent(['Deployment_server'])
+               {
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@172.31.45.222 "docker rm -f maven-container || true && docker run -d -p 8080:8080 --name maven-container ch3tan525/maven-web-application:${buildNumber}"'
+                } 
+            }
+        }
     }
 }
