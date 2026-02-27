@@ -44,15 +44,10 @@ pipeline
                     sh 'docker login -u ch3tan525 -p ${docker_pass}'
                 }
                     sh  'docker push ch3tan525/maven-web-application:${buildNumber}'
+                  
+                    sh 'docker rmi ch3tan525/maven-web-application:${buildNumber}'
 
-    stage( 'remove docker image')
-        {
-            steps
-            {
-                sh 'docker rmi ch3tan525/maven-web-application:${buildNumber}'
             }
-        }
-             }
         }
     }
 }
